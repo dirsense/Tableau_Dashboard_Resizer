@@ -164,7 +164,8 @@ class resizer:
                             middle_dir = os.path.dirname(p) + ('' if os.path.dirname(p) == '' else '/')
                             before = target_dirpath + '/' + middle_dir + testpath
                             after = target_dirpath + '/' + middle_dir + max_rate_path
-                            os.rename(before, after)
+                            if not os.path.isfile(after):
+                                os.rename(before, after)
 
     def get_content_path_in_twb(self, target_dirname):
         f = open(self.twb_path, 'r', encoding='utf-8')
